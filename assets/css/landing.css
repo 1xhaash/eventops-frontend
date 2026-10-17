@@ -233,12 +233,20 @@
 
 .ev-card:hover .ev-card__media img { transform: scale(1.06); }
 
-.ev-card__badge {
+.ev-card__badges {
   position: absolute;
   top: 12px;
   left: 12px;
   z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 65%;
 }
+
+.badge-scheduled { background: var(--brand-soft); color: var(--brand); }
+.badge-public    { background: var(--green-soft); color: var(--green); }
+.badge-private   { background: #eef0f5; color: #6b7180; }
 
 .ev-card__price-badge {
   position: absolute;

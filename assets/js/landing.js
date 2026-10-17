@@ -115,8 +115,15 @@ function categoryMatches(ev, category) {
   return (CATEGORY_KEYWORDS[category] || []).some((kw) => text.includes(kw));
 }
 
+const EVENT_STATUS_META = {
+  scheduled: { cls: "badge-scheduled", icon: "bi-calendar-check", label: "Scheduled" },
+  cancelled: { cls: "badge-cancelled", icon: "bi-x-octagon", label: "Cancelled" },
+  completed: { cls: "badge-completed", icon: "bi-check2-circle", label: "Completed" },
+};
+
 function eventCard(ev) {
   const isFree = Number(ev.price) === 0;
+  const status = EVENT_STATUS_META[ev.status] || EVENT_STATUS_META.scheduled;
   const vis = ev.visibility === "private" ? "private" : "public";
   const visIcon = vis === "private" ? "bi-lock" : "bi-globe2";
 
@@ -124,7 +131,10 @@ function eventCard(ev) {
     <article class="ev-card">
       <a class="ev-card__link" href="event-details.html?id=${encodeURIComponent(ev._id)}">
         <div class="ev-card__media">
-          <span class="badge-soft badge-${vis} ev-card__badge"><i class="bi ${visIcon}"></i> ${vis[0].toUpperCase() + vis.slice(1)}</span>
+          <div class="ev-card__badges">
+            <span class="badge-soft ${status.cls}"><i class="bi ${status.icon}"></i> ${status.label}</span>
+            <span class="badge-soft badge-${vis}"><i class="bi ${visIcon}"></i> ${vis[0].toUpperCase() + vis.slice(1)}</span>
+          </div>
           <span class="ev-card__price-badge ${isFree ? "is-free" : ""}">${isFree ? "Free" : money(ev.price)}</span>
           <img src="https://picsum.photos/seed/${encodeURIComponent(ev._id || ev.title)}/600/360" alt="${escapeHtml(ev.title)}" loading="lazy" />
         </div>
