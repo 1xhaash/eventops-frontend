@@ -11,6 +11,7 @@ const fields = {
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const NAME_RE = /^[A-Za-z\u0600-\u06FF]+(?:[ '\-][A-Za-z\u0600-\u06FF]+)*$/;
 
 /* ---------- helpers ---------- */
 const fieldOf = (input) => input.closest(".field");
@@ -29,7 +30,13 @@ function setInvalid(input, message) {
 
 /* ---------- individual validators ---------- */
 const validators = {
-  fullName: (v) => (v.trim().length >= 3 ? "" : "Please enter your full name."),
+  fullName: (v) => {
+    const name = v.trim();
+    if (name.length < 3) return "Please enter your full name.";
+    if (!NAME_RE.test(name)) return "Name can only contain letters, spaces, hyphens and apostrophes.";
+    if (name.split(/\s+/).length < 2) return "Please enter your full name (first and last name).";
+    return "";
+  },
   email: (v) => (EMAIL_RE.test(v.trim()) ? "" : "Please enter a valid email address."),
   password: (v) => (v.length >= 6 ? "" : "Password must be at least 6 characters."),
 };
