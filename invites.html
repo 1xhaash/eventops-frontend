@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Private event invites</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/admin-applications.css" />
+  <link rel="stylesheet" href="assets/css/manage.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Private event invites</h1>
+          <p class="page-head__sub" id="pageSub">Manage who can access your private event.</p>
+        </div>
+        <div class="field" style="margin:0; min-width: 240px;">
+          <select class="select" id="eventPicker" aria-label="Select event"></select>
+        </div>
+      </div>
+
+      <div id="notice"></div>
+
+      <div class="two-col">
+        <div class="panel" style="margin:0;">
+          <div class="panel__head"><h3 class="panel__title"><i class="bi bi-envelope-plus"></i> Add invitees</h3></div>
+          <div class="field">
+            <label class="field__label" for="emailsInput">Email addresses</label>
+            <textarea class="textarea" id="emailsInput" placeholder="one@email.com, two@email.com&#10;or one per line"></textarea>
+            <p class="field__hint">Separate multiple emails with commas, spaces or new lines.</p>
+          </div>
+          <div class="chip-list" id="pendingChips"></div>
+          <div style="margin-top:16px;">
+            <button class="btn btn--primary" type="button" id="sendBtn"><i class="bi bi-send"></i> Send invites</button>
+          </div>
+        </div>
+
+        <div class="panel" style="margin:0;">
+          <div class="panel__head">
+            <h3 class="panel__title"><i class="bi bi-people"></i> Invited <span class="muted" id="invitedCount"></span></h3>
+          </div>
+          <ul class="ticket-list" id="inviteList"></ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/manage.js"></script>
+  <script src="assets/js/invites.js"></script>
+</body>
+</html>

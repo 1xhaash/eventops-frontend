@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Create event</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/create-event.css" />
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="organizer-dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="organizer-dashboard.html"><i class="bi bi-house"></i><span>Dashboard</span></a>
+        <a class="sidebar__link" href="organizer-dashboard.html"><i class="bi bi-calendar3"></i><span>My events</span></a>
+        <a class="sidebar__link is-active" href="create-event.html"><i class="bi bi-plus-square"></i><span>Create event</span></a>
+        <a class="sidebar__link" href="my-bookings.html"><i class="bi bi-ticket-perforated"></i><span>My bookings</span></a>
+        <a class="sidebar__link" href="profile.html"><i class="bi bi-person"></i><span>Profile</span></a>
+        <a class="sidebar__link" href="index.html"><i class="bi bi-globe2"></i><span>Browse events</span></a>
+      </nav>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title" id="pageTitle">Create event</h1>
+          <p class="page-head__sub" id="pageSub">Fill in the details below to publish your event.</p>
+        </div>
+      </div>
+
+      <div class="guard-notice" id="guardNotice" hidden>
+        <i class="bi bi-shield-lock"></i>
+        <div>
+          <h3>Organizers only</h3>
+          <p>You need an approved organizer account to create or edit events.</p>
+        </div>
+      </div>
+
+      <form id="eventForm" novalidate>
+        <div class="form-alert" id="formAlert" hidden></div>
+
+        <!-- ---------- BASIC INFO ---------- -->
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i class="bi bi-info-circle"></i> Basic info</h2>
+          </div>
+          <div class="field">
+            <label class="field__label" for="title">Title</label>
+            <input class="field__input" type="text" id="title" name="title" maxlength="100" placeholder="e.g. EventOps Annual Conference" />
+            <p class="field-error" data-error-for="title"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="description">Description</label>
+            <textarea class="field__input field__input--area" id="description" name="description" rows="4" placeholder="Tell attendees what the event is about..."></textarea>
+            <p class="field-error" data-error-for="description"></p>
+          </div>
+        </section>
+
+        <!-- ---------- DATE & VENUE ---------- -->
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i class="bi bi-geo-alt"></i> Date &amp; venue</h2>
+          </div>
+          <div class="field">
+            <label class="field__label" for="venue">Venue</label>
+            <input class="field__input" type="text" id="venue" name="venue" placeholder="e.g. Cairo International Convention Centre" />
+            <p class="field-error" data-error-for="venue"></p>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field__label" for="startsAt">Starts at</label>
+              <input class="field__input" type="datetime-local" id="startsAt" name="startsAt" />
+              <p class="field-error" data-error-for="startsAt"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="endsAt">Ends at</label>
+              <input class="field__input" type="datetime-local" id="endsAt" name="endsAt" />
+              <p class="field-error" data-error-for="endsAt"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="registrationDeadline">Registration deadline</label>
+            <input class="field__input" type="datetime-local" id="registrationDeadline" name="registrationDeadline" />
+            <p class="field-error" data-error-for="registrationDeadline"></p>
+          </div>
+        </section>
+
+        <!-- ---------- TICKETS ---------- -->
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i class="bi bi-ticket-perforated"></i> Tickets</h2>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field__label" for="capacity">Capacity</label>
+              <input class="field__input" type="number" id="capacity" name="capacity" min="1" step="1" placeholder="e.g. 200" />
+              <p class="field-error" data-error-for="capacity"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="price">Price (EGP)</label>
+              <input class="field__input" type="number" id="price" name="price" min="0" step="0.01" placeholder="0 for free" />
+              <p class="field-error" data-error-for="price"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- VISIBILITY ---------- -->
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title"><i class="bi bi-globe2"></i> Visibility</h2>
+          </div>
+          <div class="radio-row">
+            <label class="radio-card" data-vis="public">
+              <input type="radio" name="visibility" value="public" />
+              <span class="radio-card__body">
+                <span class="radio-card__title"><i class="bi bi-globe2"></i> Public</span>
+                <span class="radio-card__desc">Anyone can discover and book this event.</span>
+              </span>
+            </label>
+            <label class="radio-card" data-vis="private">
+              <input type="radio" name="visibility" value="private" />
+              <span class="radio-card__body">
+                <span class="radio-card__title"><i class="bi bi-lock"></i> Private</span>
+                <span class="radio-card__desc">Only invited emails can see and book.</span>
+              </span>
+            </label>
+          </div>
+          <p class="field-error" data-error-for="visibility"></p>
+
+          <div class="field field--invites" id="invitedGroup" hidden>
+            <label class="field__label" for="invitedEmails">Invited emails (one per line or comma separated)</label>
+            <textarea class="field__input field__input--area" id="invitedEmails" name="invitedEmails" rows="4" placeholder="alice@example.com&#10;bob@example.com"></textarea>
+            <p class="field-error" data-error-for="invitedEmails"></p>
+          </div>
+        </section>
+
+        <!-- ---------- STICKY FOOTER ---------- -->
+        <div class="form-footer">
+          <button class="btn-secondary" type="button" id="cancelBtn"><i class="bi bi-x-lg"></i> Cancel</button>
+          <button class="btn-brand" type="submit" id="submitBtn"><i class="bi bi-send"></i> Publish event</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- ===================== TOASTS ===================== -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/create-event.js"></script>
+</body>
+</html>

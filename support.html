@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Support</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/admin-applications.css" />
+  <link rel="stylesheet" href="assets/css/manage.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Support</h1>
+          <p class="page-head__sub">Open a ticket and track our replies.</p>
+        </div>
+        <button class="btn btn--primary" type="button" id="newTicketBtn"><i class="bi bi-plus-lg"></i> New ticket</button>
+      </div>
+
+      <div class="two-col">
+        <div class="panel" style="margin:0;">
+          <div class="panel__head">
+            <h3 class="panel__title"><i class="bi bi-inbox"></i> Your tickets</h3>
+            <select class="select" id="statusFilter" style="width:auto;">
+              <option value="">All</option>
+              <option value="open">Open</option>
+              <option value="in_progress">In progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+          <ul class="ticket-list" id="ticketList"></ul>
+        </div>
+
+        <div>
+          <div class="panel" id="newTicketPanel" hidden>
+            <div class="panel__head"><h3 class="panel__title"><i class="bi bi-pencil-square"></i> New ticket</h3></div>
+            <div class="field">
+              <label class="field__label" for="subject">Subject</label>
+              <input class="input" id="subject" maxlength="120" placeholder="Short summary of the issue" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="booking">Related booking (optional)</label>
+              <select class="select" id="booking"><option value="">None</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="message">Message</label>
+              <textarea class="textarea" id="message" rows="5" maxlength="2000" placeholder="Describe your issue…"></textarea>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn--primary" type="button" id="submitTicket"><i class="bi bi-send"></i> Submit ticket</button>
+              <button class="btn" type="button" id="cancelTicket">Cancel</button>
+            </div>
+          </div>
+
+          <div class="panel" id="detailPanel">
+            <div class="panel__head"><h3 class="panel__title"><i class="bi bi-chat-dots"></i> Ticket detail</h3></div>
+            <div id="detailBody"><div class="empty-note">Select a ticket to read the conversation.</div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/manage.js"></script>
+  <script src="assets/js/support.js"></script>
+</body>
+</html>

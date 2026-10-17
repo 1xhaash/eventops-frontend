@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Profile</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/profile.css" />
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="dashboard.html"><i class="bi bi-house"></i><span>Dashboard</span></a>
+        <a class="sidebar__link" href="my-bookings.html"><i class="bi bi-ticket-perforated"></i><span>My bookings</span></a>
+        <a class="sidebar__link" href="my-bookings.html"><i class="bi bi-qr-code"></i><span>My tickets</span></a>
+        <a class="sidebar__link is-active" href="profile.html"><i class="bi bi-person"></i><span>Profile</span></a>
+        <a class="sidebar__link" href="index.html"><i class="bi bi-globe2"></i><span>Browse events</span></a>
+        <a class="sidebar__link" href="#applyCard"><i class="bi bi-briefcase"></i><span>Become an organizer</span></a>
+      </nav>
+    </aside>
+    <main class="content">
+
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Profile</h1>
+          <p class="page-head__sub">Manage your account settings and organizer access.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- ========== ACCOUNT ========== -->
+        <div class="col-12 col-xl-5">
+          <section class="profile-card">
+            <div class="profile-card__top">
+              <img id="accountAvatar" class="profile-card__avatar" src="https://i.pravatar.cc/160?img=12" alt="User" />
+              <div class="profile-card__id">
+                <h2 id="accountName" class="profile-card__name">—</h2>
+                <p id="accountEmail" class="profile-card__email">—</p>
+                <div class="profile-card__badges">
+                  <span id="roleBadge" class="badge-soft badge-draft">—</span>
+                  <span id="statusBadge" class="badge-soft badge-draft">—</span>
+                </div>
+              </div>
+            </div>
+
+            <form class="profile-form" id="nameForm" novalidate>
+              <label class="field">
+                <span class="field__label">Display name</span>
+                <input class="field__input" id="nameInput" type="text" maxlength="30" placeholder="Your name" autocomplete="name" />
+              </label>
+              <p class="field__error" id="nameError" hidden></p>
+              <button class="btn-brand" id="saveNameBtn" type="submit"><i class="bi bi-check-lg"></i> Save changes</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- ========== ORGANIZER ========== -->
+        <div class="col-12 col-xl-7">
+
+          <section class="profile-card" id="applyCard">
+            <div class="panel__head">
+              <h3 class="panel__title"><i class="bi bi-briefcase"></i> Become an organizer</h3>
+            </div>
+
+            <div class="organizer-note" id="alreadyOrganizer" hidden>
+              <span class="organizer-note__icon"><i class="bi bi-patch-check-fill"></i></span>
+              <div>
+                <div class="organizer-note__title">You're already an organizer</div>
+                <div class="organizer-note__text">Your account has organizer access. Head to the dashboard to create and manage your events.</div>
+              </div>
+            </div>
+
+            <div id="applyFormWrap">
+              <p class="profile-card__desc">Tell us the name of your organization. An admin will review your request.</p>
+              <form class="profile-form" id="applyForm" novalidate>
+                <label class="field">
+                  <span class="field__label">Organization name</span>
+                  <input class="field__input" id="orgNameInput" type="text" maxlength="100" placeholder="e.g. Nile Events Co." autocomplete="organization" />
+                </label>
+                <p class="field__error" id="orgError" hidden></p>
+                <button class="btn-brand" id="applyBtn" type="submit"><i class="bi bi-send"></i> Submit application</button>
+              </form>
+            </div>
+          </section>
+
+          <section class="profile-card">
+            <div class="panel__head">
+              <h3 class="panel__title"><i class="bi bi-clock-history"></i> Your applications</h3>
+            </div>
+            <div id="applicationsList"></div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================== TOASTS ===================== -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/profile.js"></script>
+</body>
+</html>

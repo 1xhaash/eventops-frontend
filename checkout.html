@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Checkout</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/admin-applications.css" />
+  <link rel="stylesheet" href="assets/css/manage.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Checkout</h1>
+          <p class="page-head__sub">Complete your payment to confirm the booking.</p>
+        </div>
+      </div>
+
+      <div class="banner banner--amber" id="holdBanner" hidden>
+        <i class="bi bi-hourglass-split"></i>
+        <span>Your seat is held for <span class="banner__timer" id="holdTimer">--:--</span></span>
+      </div>
+
+      <div id="alertBox"></div>
+
+      <div class="two-col">
+        <div class="panel" style="margin:0;">
+          <div class="panel__head">
+            <h3 class="panel__title"><i class="bi bi-credit-card"></i> Payment method</h3>
+            <span class="mock-badge"><i class="bi bi-shield-check"></i> Mock payment</span>
+          </div>
+
+          <div class="mock-demo">
+            <span>Just testing? Use mock card details.</span>
+            <button class="btn btn--ghost btn--sm" type="button" id="demoFill"><i class="bi bi-magic"></i> Use test card</button>
+          </div>
+
+          <div class="card-form" id="cardForm">
+            <div class="field field--full">
+              <label class="field__label" for="cardName">Cardholder name</label>
+              <input class="input" id="cardName" placeholder="Sara Hassan" autocomplete="cc-name" />
+            </div>
+            <div class="field field--full">
+              <label class="field__label" for="cardNumber">Card number</label>
+              <input class="input" id="cardNumber" placeholder="4242 4242 4242 4242" inputmode="numeric" maxlength="19" autocomplete="cc-number" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="cardExpiry">Expiry</label>
+              <input class="input" id="cardExpiry" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="cardCvc">CVC</label>
+              <input class="input" id="cardCvc" placeholder="123" maxlength="4" inputmode="numeric" autocomplete="cc-csc" />
+            </div>
+          </div>
+          <p class="field__hint">This is a mock gateway — no real card is charged. Any valid-looking values will work.</p>
+        </div>
+
+        <div class="panel summary-card">
+          <div class="panel__head"><h3 class="panel__title"><i class="bi bi-receipt"></i> Order summary</h3></div>
+          <div id="orderSummary"><div class="spinner"><i class="bi bi-arrow-repeat"></i><span>Loading order…</span></div></div>
+          <button class="btn btn--primary btn--block" type="button" id="payBtn" style="margin-top:18px;" disabled>
+            <i class="bi bi-lock-fill"></i> Pay now
+          </button>
+          <a class="btn btn--block" href="my-bookings.html" style="margin-top:10px;">Cancel</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/manage.js"></script>
+  <script src="assets/js/checkout.js"></script>
+</body>
+</html>

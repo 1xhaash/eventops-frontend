@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Select your seat</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/seat-selection.css" />
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span>
+        <span class="brand__name">EventOps</span>
+      </a>
+      <div class="topbar__actions">
+        <a class="btn-ghost" href="index.html"><i class="bi bi-arrow-left"></i> Back</a>
+        <button class="profile" type="button">
+          <img src="https://i.pravatar.cc/80?img=12" alt="Beshoy Saeed" class="profile__avatar" />
+          <span class="profile__name">Beshoy Saeed</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="seat-page container-xl">
+
+    <div class="page-head-sm">
+      <h1 class="page-head-sm__title">Select your seat</h1>
+      <p class="page-head-sm__sub" id="eventName">—</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- ========== SEAT MAP ========== -->
+      <div class="col-12 col-lg-8">
+        <div class="seat-map-card">
+          <div class="stage">
+            <span class="stage__label">STAGE</span>
+          </div>
+
+          <div class="seat-grid-wrap">
+            <div class="seat-grid" id="seatGrid"></div>
+          </div>
+
+          <!-- Legend -->
+          <div class="legend">
+            <span class="legend__item"><span class="seat-dot seat-dot--available"></span> Available</span>
+            <span class="legend__item"><span class="seat-dot seat-dot--held"></span> Held</span>
+            <span class="legend__item"><span class="seat-dot seat-dot--booked"></span> Booked</span>
+            <span class="legend__item"><span class="seat-dot seat-dot--selected"></span> Selected</span>
+          </div>
+
+          <div class="seat-map-card__foot">
+            <span><i class="bi bi-info-circle"></i> Click an available seat to select it. Only one seat per booking.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SUMMARY ========== -->
+      <div class="col-12 col-lg-4">
+        <aside class="summary-card">
+          <h2 class="summary-card__title">Order summary</h2>
+
+          <div class="summary-row">
+            <span>Event</span>
+            <b id="summaryEvent">—</b>
+          </div>
+          <div class="summary-row">
+            <span>Seat</span>
+            <b id="summarySeat">—</b>
+          </div>
+          <div class="summary-row">
+            <span>Price</span>
+            <b id="summaryPrice">—</b>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <b id="summaryTotal">EGP 0</b>
+          </div>
+
+          <button class="btn-brand summary-card__btn" id="confirmBtn" type="button" disabled>
+            <i class="bi bi-check-lg"></i> Select a seat
+          </button>
+
+          <p class="summary-card__note">
+            <i class="bi bi-shield-check"></i> Your seat is held for 10 minutes after booking.
+          </p>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== TOASTS ===================== -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/seat-selection.js"></script>
+</body>
+</html>

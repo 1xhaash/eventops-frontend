@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Dashboard</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand">
+        <span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span>
+        <span class="brand__name">EventOps</span>
+      </a>
+
+      <div class="topbar__search">
+        <i class="bi bi-search"></i>
+        <input
+          type="search"
+          id="globalSearch"
+          placeholder="Search events, venues, or organizers..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="icon-btn__dot"></span>
+        </button>
+
+        <button class="profile" type="button">
+          <img
+            src="https://i.pravatar.cc/80?img=12"
+            alt="Beshoy Saeed"
+            class="profile__avatar"
+          />
+          <span class="profile__name">Beshoy Saeed</span>
+          <i class="bi bi-chevron-down profile__caret"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar__nav">
+        <a class="sidebar__link is-active" href="dashboard.html" data-page="dashboard">
+          <i class="bi bi-house"></i><span>Dashboard</span>
+        </a>
+        <a class="sidebar__link" href="index.html" data-page="events">
+          <i class="bi bi-calendar3"></i><span>Events</span>
+        </a>
+        <a class="sidebar__link" href="my-bookings.html" data-page="bookings">
+          <i class="bi bi-ticket-perforated"></i><span>Bookings</span>
+        </a>
+        <a class="sidebar__link" href="profile.html" data-page="settings">
+          <i class="bi bi-gear"></i><span>Settings</span>
+        </a>
+        <a class="sidebar__link" href="organizer-dashboard.html" id="navOrganizer" hidden>
+          <i class="bi bi-briefcase"></i><span>Organizer dashboard</span>
+        </a>
+        <a class="sidebar__link" href="admin-applications.html" id="navAdmin" hidden>
+          <i class="bi bi-clipboard-check"></i><span>Applications</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="content">
+
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Good morning, Beshoy <span class="wave">👋</span></h1>
+          <p class="page-head__sub">Here's what's happening with your events today.</p>
+        </div>
+        <button class="btn-brand" type="button" id="createEventBtn" hidden>
+          <i class="bi bi-plus-lg"></i> Create Event
+        </button>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- ---------- LEFT COLUMN ---------- -->
+        <div class="col-12 col-xl-9">
+
+          <!-- STAT CARDS -->
+          <div class="row g-3 g-lg-4" id="statCards"></div>
+
+          <!-- UPCOMING EVENTS -->
+          <div class="section-head">
+            <h2 class="section-head__title">Upcoming Events</h2>
+            <a href="index.html" class="section-head__link">View all <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="event-list" id="eventList"></div>
+        </div>
+
+        <!-- ---------- RIGHT COLUMN ---------- -->
+        <div class="col-12 col-xl-3">
+
+          <!-- UPCOMING TODAY -->
+          <div class="panel">
+            <div class="panel__head">
+              <h3 class="panel__title"><i class="bi bi-calendar-event"></i> Upcoming Today</h3>
+            </div>
+            <ul class="timeline" id="timeline"></ul>
+          </div>
+
+          <!-- QUICK STATS -->
+          <div class="panel">
+            <div class="panel__head">
+              <h3 class="panel__title"><i class="bi bi-bar-chart-line"></i> Quick Stats</h3>
+              <select class="period-select" id="periodSelect">
+                <option>This Month</option>
+                <option>Last Month</option>
+                <option>This Year</option>
+              </select>
+            </div>
+            <ul class="quick-stats" id="quickStats"></ul>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-card">
+            <div class="cta-card__body">
+              <i class="bi bi-ticket-perforated cta-card__icon"></i>
+              <h4>Get started</h4>
+              <p>Browse events or manage your account in a few clicks.</p>
+              <button class="cta-card__btn" id="createEventCta" type="button">
+                Browse events <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+            <i class="bi bi-calendar2-check cta-card__watermark"></i>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

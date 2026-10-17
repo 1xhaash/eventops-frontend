@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Participants</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/admin-applications.css" />
+  <link rel="stylesheet" href="assets/css/manage.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Participants</h1>
+          <p class="page-head__sub" id="pageSub">Confirmed attendees for your event.</p>
+        </div>
+        <div class="field" style="margin:0; min-width: 240px;">
+          <select class="select" id="eventPicker" aria-label="Select event"></select>
+        </div>
+      </div>
+
+      <div class="stat-grid" id="statGrid" style="margin-bottom: 20px;"></div>
+
+      <div class="panel">
+        <div class="toolbar">
+          <div class="toolbar__tabs" id="statusTabs">
+            <button class="tab is-active" type="button" data-filter="all">All</button>
+            <button class="tab" type="button" data-filter="checkedIn">Checked in</button>
+            <button class="tab" type="button" data-filter="notCheckedIn">Not checked in</button>
+          </div>
+          <div class="toolbar__search">
+            <i class="bi bi-search"></i>
+            <input type="search" id="searchInput" placeholder="Search by name, email, or seat" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="app-table">
+            <thead>
+              <tr>
+                <th>Participant</th>
+                <th>Email</th>
+                <th>Seat</th>
+                <th>Booking</th>
+                <th>Payment</th>
+                <th>Check-in</th>
+                <th class="app-actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="cancelModal">
+    <div class="modal-card">
+      <div class="modal-card__icon"><i class="bi bi-x-octagon"></i></div>
+      <h3>Cancel this booking?</h3>
+      <p id="cancelModalText">The participant's confirmed booking will be cancelled.</p>
+      <div class="modal-card__actions">
+        <button class="btn" type="button" id="cancelModalClose">Keep booking</button>
+        <button class="btn btn--danger" type="button" id="cancelModalConfirm">Yes, cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/manage.js"></script>
+  <script src="assets/js/participants.js"></script>
+</body>
+</html>

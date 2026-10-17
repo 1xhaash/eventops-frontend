@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventOps · Users &amp; events</title>
+
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/admin-applications.css" />
+  <link rel="stylesheet" href="assets/css/manage.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="dashboard.html" class="brand"><span class="brand__logo"><i class="bi bi-camera-video-fill"></i></span><span class="brand__name">EventOps</span></a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="bi bi-bell"></i><span class="icon-btn__dot"></span></button>
+        <button class="profile" type="button"><img src="https://i.pravatar.cc/80?img=12" alt="User" class="profile__avatar" /><span class="profile__name">User</span><i class="bi bi-chevron-down profile__caret"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-head__title">Users &amp; events</h1>
+          <p class="page-head__sub">Manage accounts, review events and answer support tickets.</p>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button class="tabs__item is-active" type="button" data-tab="users"><i class="bi bi-people"></i> Users</button>
+        <button class="tabs__item" type="button" data-tab="events"><i class="bi bi-calendar3"></i> Events</button>
+        <button class="tabs__item" type="button" data-tab="support"><i class="bi bi-life-preserver"></i> Support tickets</button>
+      </div>
+
+      <!-- USERS -->
+      <section id="panel-users">
+        <div class="panel">
+          <div class="toolbar">
+            <div class="toolbar__tabs" id="roleTabs">
+              <button class="tab is-active" type="button" data-role="">All roles</button>
+              <button class="tab" type="button" data-role="participant">Participants</button>
+              <button class="tab" type="button" data-role="organizer">Organizers</button>
+              <button class="tab" type="button" data-role="admin">Admins</button>
+            </div>
+            <div class="toolbar__search">
+              <i class="bi bi-search"></i>
+              <input type="search" id="userSearch" placeholder="Search by name or email" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="app-table">
+              <thead>
+                <tr><th>User</th><th>Email</th><th>Role</th><th>Status</th><th class="app-actions-col">Actions</th></tr>
+              </thead>
+              <tbody id="userBody"></tbody>
+            </table>
+          </div>
+
+          <div class="table-foot" id="userFoot" style="display:none;">
+            <span class="table-foot__info" id="userPageInfo">Page 1</span>
+            <div class="pagination">
+              <button class="page-btn" type="button" id="userPrev"><i class="bi bi-chevron-left"></i> Prev</button>
+              <button class="page-btn" type="button" id="userNext">Next <i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="panel-events" hidden>
+        <div class="panel">
+          <div class="toolbar">
+            <div class="toolbar__search">
+              <i class="bi bi-search"></i>
+              <input type="search" id="eventSearch" placeholder="Search events by title or organizer" autocomplete="off" />
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="app-table">
+              <thead>
+                <tr><th>Event</th><th>Organizer</th><th>Starts</th><th>Visibility</th><th>Status</th><th style="text-align:right;">Price</th></tr>
+              </thead>
+              <tbody id="eventBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUPPORT -->
+      <section id="panel-support" hidden>
+        <div class="two-col">
+          <div class="panel" style="margin:0;">
+            <div class="panel__head">
+              <h3 class="panel__title"><i class="bi bi-inbox"></i> Tickets</h3>
+              <select class="select" id="ticketStatusFilter" style="width:auto;">
+                <option value="">All statuses</option>
+                <option value="open">Open</option>
+                <option value="in_progress">In progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <ul class="ticket-list" id="ticketList"></ul>
+          </div>
+
+          <div class="panel" style="margin:0;">
+            <div class="panel__head"><h3 class="panel__title"><i class="bi bi-chat-dots"></i> Ticket detail</h3></div>
+            <div id="ticketDetail"><div class="empty-note">Select a ticket to view the conversation.</div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/manage.js"></script>
+  <script src="assets/js/admin-users.js"></script>
+</body>
+</html>
