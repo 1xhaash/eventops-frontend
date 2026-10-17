@@ -36,7 +36,7 @@
    ========================================================= */
 
 /* DEPLOY: set this to your backend public URL (no trailing slash), e.g. "https://eventops-api.onrender.com". Leave "" for local dev. */
-const DEPLOY_API_BASE = "";
+const DEPLOY_API_BASE = "https://eventops-backend.vercel.app";
 
 window.API = (function () {
   const BASE = DEPLOY_API_BASE || "http://localhost:3000";
